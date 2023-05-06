@@ -1,0 +1,47 @@
+{% extends 'partials/base.html' %}
+
+
+{% block content %}
+
+{% if sellers %}
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name of store</th>
+          <th scope="col">Balance</th>
+          <th scope="col">Price</th>
+          <th scope="col">Network</th>
+          <th scope="col">Wallet Address</th>
+          <th scope="col">Email</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for seller in sellers %}
+
+        <tr>
+            <th scope="row">{{seller.id}}</th>
+            <td>{{seller.name_of_store}}</td>
+            <td>{{seller.balance}}</td>
+            <td>{{seller.price}}</td>
+            <td>{{seller.network}}</td>
+            <td>{{seller.wallet_address}}</td>
+            <td>{{seller.email}}</td>
+
+        </tr>
+        {% endfor %}
+
+    </tbody>
+
+
+</table>
+{% else %}
+<h2>There are no sellers at this time</h2>
+{% endif %}
+
+
+{% endblock content %}

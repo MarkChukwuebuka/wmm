@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-# CSRF_TRUSTED_ORIGINS = ['https://www.webinarwhalebot.com/', 'https://www.webinarwhalebot.com', 'https://www.webinarwhalebot.com/admin', 'https://www.webinarwhalebot.com/admin/']
+CSRF_TRUSTED_ORIGINS = ['https://wmm-production.up.railway.app/', 'https://wmm-production.up.railway.app']
 
 # Application definition
 

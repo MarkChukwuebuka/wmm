@@ -1,0 +1,51 @@
+{% extends '../partials/base.html' %}
+
+{% block content %}
+  <h1>Multi-Step Form</h1>
+
+  {% if wizard.steps.prev %}
+    <a href="{% url 'multi_step_form' %}?step={{ wizard.steps.prev }}">&laquo; Previous</a>
+  {% endif %}
+
+  <form method="POST" action="{% url 'multi_step_form' %}">
+    {% csrf_token %}
+    {{ wizard.management_form }}
+
+    {% if wizard.errors %}
+      <div class="alert alert-danger" role="alert">
+        There was an error with your form. Please correct the errors below.
+      </div>
+    {% endif %}
+
+    {% for field in wizard.current_step.form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}
+          <small class="form-text text-muted">{{ field.help_text }}</small>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    {% if wizard.steps.next %}
+      <button type="submit" name="next_step">Next &raquo;</button>
+    {% else %}
+      <button type="submit" name="submit">Submit</button>
+    {% endif %}
+  </form>
+
+  <script>
+    // Save form data on every input change
+    const inputs = document.querySelectorAll('input, select');
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].addEventListener('change', function() {
+        localStorage.setItem(this.name, this.value);
+      });
+      // Load saved form data on page load
+      const savedValue = localStorage.getItem(inputs[i].name);
+      if (savedValue) {
+        inputs[i].value = savedValue;
+      }
+    }
+  </script>
+{% endblock content %}

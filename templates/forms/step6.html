@@ -1,4 +1,25 @@
-{% extends '../partials/base.html' %}
+<form method="POST" action="{% url 'multi_step_form' %}">
+    {% csrf_token %}
+    <label for="{{ form.email.id_for_label }}">Email:</label>
+    {{ form.email }}
+    <button type="submit" name="previous_step">Previous</button>
+    <button type="submit" name="submit">Submit</button>
+  </form>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends '../partials/base.html' %}
 
 
 {% block content %}
@@ -13,4 +34,4 @@
 </form>
 
 
-{% endblock content %}
+{% endblock content %} {% endcomment %}

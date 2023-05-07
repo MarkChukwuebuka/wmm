@@ -1,4 +1,23 @@
-{% extends '../partials/base.html' %}
+<form method="POST" action="{% url 'multi_step_form' %}">
+    {% csrf_token %}
+    <label for="{{ form.wallet_address.id_for_label }}">Wallet Address:</label>
+    {{ form.wallet_address }}
+    <button type="submit" name="previous_step">Previous</button>
+    <button type="submit" name="next_step">Next</button>
+  </form>
+  
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends '../partials/base.html' %}
 
 
 
@@ -13,4 +32,4 @@
 </form>
 
 
-{% endblock content %}
+{% endblock content %} {% endcomment %}
